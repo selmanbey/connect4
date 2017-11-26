@@ -1,2 +1,2 @@
 # connect4
-A command-line based python game
+A Command-line Based Python Game
