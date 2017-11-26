@@ -1,5 +1,5 @@
-import random
-import os
+import random   #for play_computer()
+import os       #for cls()
 
 PLAYER1_COIN = 'X'
 PLAYER2_COIN = 'O'
