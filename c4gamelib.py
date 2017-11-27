@@ -1,16 +1,17 @@
-import random   #for play_computer()
-import os       #for cls()
+import random   # for play_computer()
+import os       # for cls()
 
 PLAYER1_COIN = 'X'
 PLAYER2_COIN = 'O'
 COMPUTER_COIN = 'O'
 EMPTY_SPACE = '_'
 
-# STANDALONE FUNCTIONS
 
+# STANDALONE FUNCTIONS
 def cls():
     # Clears the command line screen
-    os.system('cls' if os.name=='nt' else 'clear')
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 
 def create_slots():
     # Asks user number of slots she wants to create for her board
@@ -26,6 +27,7 @@ def create_slots():
             else:
                 return number_of_slots
 
+
 def create_depth():
     # Asks user depth of each slot she wants to create for her board
     # Returns depth_of_slots (int)
@@ -39,6 +41,7 @@ def create_depth():
                 continue
             else:
                 return depth_of_slots
+
 
 def choose_gametype():
     # Asks user to choose the gametype (against computer or player 2, that is)
@@ -60,13 +63,11 @@ def choose_gametype():
 # CLASSES
 class Board():
     """Game Board
-    Methods:
-        print_board()
     """
 
     def __init__(self, slots, depth):
         """Creates a new board
-        Kwargs:
+        Args:
             slots(int) = number of slots (fixed)
             depth(int) = depth of each slot (fixed)
             content(list) = content of board (fixed)
@@ -90,24 +91,12 @@ class Board():
         print(' ')
         print('––––––––––––––––––––––\n')
 
+
 class Gameplay():
     """Gameplay
-    Methods:
-        ask_players_turn()
-        process_players_turn()
-        play_player1()
-        play_player2()
-        play_computer()
-        horizantal_check()
-        vertical_check()
-        diagonal_check_fromleft()
-        diagonal_check_fromright()
-        check_who_won()
-        check_board()
-        check_draw()
     """
 
-    def __init__ (self, board):
+    def __init__(self, board):
         """Creates a gameplay
         Args:
             board (list)
@@ -120,7 +109,7 @@ class Gameplay():
         # Returns players_turn (int)
         while True:
             try:
-                players_turn = int(input('PLAYER %s\'S TURN \n' %str(players_number) + 'Pick a slot to drop your coin: '))
+                players_turn = int(input('PLAYER %s\'S TURN \n' % str(players_number) + 'Pick a slot to drop your coin: '))
             except Exception:
                 print('There is no such slot. Try again.')
                 pass
@@ -193,7 +182,7 @@ class Gameplay():
         # Returns horizantal_board
         horizantal_board = ''
         for x in range(self.board.depth):
-            horizantal_board += ' ' #seperates each line for accurate checking
+            horizantal_board += ' '  # seperates each line for accurate checking
             for y in range(self.board.slots):
                 horizantal_board += self.board.content[x][y]
         return horizantal_board
@@ -203,7 +192,7 @@ class Gameplay():
         # Returns vertical_board
         vertical_board = ''
         for x in range(self.board.slots):
-            vertical_board += ' ' #seperates each line for accurate checking
+            vertical_board += ' '  # seperates each line for accurate checking
             for y in range(self.board.depth):
                 vertical_board += self.board.content[y][x]
         return vertical_board
@@ -217,7 +206,7 @@ class Gameplay():
         for n in range(self.board.slots):
             x = 0
             y = 0
-            diagonal_board_fromleft += ' ' #seperates each line for accurate checking
+            diagonal_board_fromleft += ' '  # seperates each line for accurate checking
             while x in range(self.board.depth) and y in range(self.board.slots):
                     try:
                         diagonal_board_fromleft += self.board.content[x][y + n]
@@ -229,7 +218,7 @@ class Gameplay():
         for n in range(self.board.depth):
             x = 0
             y = 0
-            diagonal_board_fromleft += ' ' #seperates each line for accurate checking
+            diagonal_board_fromleft += ' '  # seperates each line for accurate checking
             while x in range(self.board.depth) and y in range(self.board.slots):
                     try:
                         diagonal_board_fromleft += self.board.content[x + n][y]
@@ -248,7 +237,7 @@ class Gameplay():
         for n in range(self.board.slots):
             x = 0
             y = self.board.slots - 1
-            diagonal_board_fromright += ' ' #seperates each line for accurate checking
+            diagonal_board_fromright += ' '  # seperates each line for accurate checking
             while x in range(self.board.depth) and y in range(self.board.slots):
                     try:
                         if y - n >= 0:
@@ -261,7 +250,7 @@ class Gameplay():
         for n in range(self.board.depth):
             x = 0
             y = self.board.slots - 1
-            diagonal_board_fromright += ' ' #seperates each line for accurate checking
+            diagonal_board_fromright += ' '  # seperates each line for accurate checking
             while x in range(self.board.depth) and y in range(self.board.slots):
                     try:
                         diagonal_board_fromright += self.board.content[x + n][y]
